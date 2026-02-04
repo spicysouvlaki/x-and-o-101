@@ -8,11 +8,10 @@ const Sections = (function() {
   const sectionFiles = {
     1: 'sections/1-scoring.html',
     2: 'sections/2-formations.html',
-    3: 'sections/3-positions.html',
-    4: 'sections/4-routes.html',
-    5: 'sections/5-defense.html',
-    6: 'sections/6-defense-quiz.html',
-    7: 'sections/7-puzzle.html'
+    3: 'sections/4-routes.html',
+    4: 'sections/5-defense.html',
+    5: 'sections/6-defense-quiz.html',
+    6: 'sections/7-puzzle.html'
   };
 
   // Track loaded sections

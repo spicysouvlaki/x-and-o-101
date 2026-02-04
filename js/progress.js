@@ -11,7 +11,7 @@ const Progress = (function() {
   };
 
   // Total sections
-  const TOTAL_SECTIONS = 7;
+  const TOTAL_SECTIONS = 6;
 
   // State
   let state = {

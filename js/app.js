@@ -173,29 +173,7 @@ const App = (function() {
     }
   }
 
-  // Initialize Section 3: Positions
-  function initPositionsSection() {
-    const field = Field.create('positions-field', {
-      yardLine: 25
-    });
-
-    const handlePlayerClick = (label, info) => {
-      const nameEl = document.getElementById('position-name');
-      const descEl = document.getElementById('position-desc');
-
-      if (nameEl && descEl && info) {
-        nameEl.textContent = info.name;
-        descEl.textContent = info.desc;
-      }
-    };
-
-    Field.setFullFormation(field, 'Two-High Shell', {
-      onOffenseClick: handlePlayerClick,
-      onDefenseClick: handlePlayerClick
-    });
-  }
-
-  // Initialize Section 3: Defense
+  // Initialize Defense Section
   function initDefenseSection() {
     const field = Field.create('defense-field', {
       yardLine: 30
@@ -602,11 +580,10 @@ const App = (function() {
     // Register section initializers (called when each section loads)
     if (typeof Sections !== 'undefined') {
       Sections.onLoad(2, initFormationsSection);
-      Sections.onLoad(3, initPositionsSection);
-      Sections.onLoad(4, initRoutesSection);
-      Sections.onLoad(5, initDefenseSection);
-      Sections.onLoad(6, initCoverageQuizSection);
-      Sections.onLoad(7, initPuzzleSection);
+      Sections.onLoad(3, initRoutesSection);
+      Sections.onLoad(4, initDefenseSection);
+      Sections.onLoad(5, initCoverageQuizSection);
+      Sections.onLoad(6, initPuzzleSection);
     }
 
     // Initialize Progress (this will load initial sections)

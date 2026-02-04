@@ -159,6 +159,22 @@ h4 {
   font-size: 1rem;
 }
 
+.section-credit {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+.section-credit a {
+  color: var(--accent-blue);
+  text-decoration: none;
+}
+
+.section-credit a:hover {
+  text-decoration: underline;
+}
+
 /* Buttons */
 .btn-next {
   display: block;

@@ -276,7 +276,6 @@ const Field = (function() {
       ],
       linebackers: [
         { x: 35, y: -3, label: 'LB' },
-        { x: 50, y: -3, label: 'MLB' },
         { x: 65, y: -3, label: 'LB' }
       ],
       dline: [
@@ -297,7 +296,6 @@ const Field = (function() {
       ],
       linebackers: [
         { x: 35, y: -3, label: 'LB' },
-        { x: 50, y: -3, label: 'MLB' },
         { x: 65, y: -3, label: 'LB' }
       ],
       dline: [
@@ -318,7 +316,6 @@ const Field = (function() {
       ],
       linebackers: [
         { x: 35, y: -3, label: 'LB' },
-        { x: 50, y: -3, label: 'MLB' },
         { x: 65, y: -3, label: 'LB' }
       ],
       dline: [
@@ -330,8 +327,7 @@ const Field = (function() {
     },
     'Cover 3': {
       safeties: [
-        { x: 50, y: -15, label: 'FS' },
-        { x: 65, y: -6, label: 'SS' }
+        { x: 50, y: -15, label: 'FS' }
       ],
       corners: [
         { x: 20, y: -12, label: 'CB' },
@@ -340,12 +336,12 @@ const Field = (function() {
       linebackers: [
         { x: 30, y: -4, label: 'LB' },
         { x: 50, y: -4, label: 'MLB' },
+        { x: 65, y: -6, label: 'SS' },
         { x: 70, y: -4, label: 'LB' }
       ],
       dline: [
         { x: 35, y: 0, label: 'DE' },
         { x: 47, y: 0, label: 'DT' },
-        { x: 53, y: 0, label: 'DT' },
         { x: 65, y: 0, label: 'DE' }
       ]
     },
@@ -371,8 +367,7 @@ const Field = (function() {
     },
     'Cover 1': {
       safeties: [
-        { x: 50, y: -12, label: 'FS' },
-        { x: 60, y: -5, label: 'SS' }
+        { x: 50, y: -12, label: 'FS' }
       ],
       corners: [
         { x: 15, y: -2, label: 'CB' },
@@ -381,12 +376,12 @@ const Field = (function() {
       linebackers: [
         { x: 35, y: -3, label: 'LB' },
         { x: 50, y: -3, label: 'MLB' },
+        { x: 60, y: -5, label: 'SS' },
         { x: 70, y: -3, label: 'LB' }
       ],
       dline: [
         { x: 35, y: 0, label: 'DE' },
         { x: 47, y: 0, label: 'DT' },
-        { x: 53, y: 0, label: 'DT' },
         { x: 65, y: 0, label: 'DE' }
       ]
     }
