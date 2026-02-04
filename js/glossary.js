@@ -6,6 +6,14 @@
 const Glossary = (function() {
   // Football term definitions
   const terms = {
+    'offense': {
+      term: 'Offense',
+      definition: 'The team with the ball, trying to score. They run plays to move down the field toward the end zone.'
+    },
+    'defense': {
+      term: 'Defense',
+      definition: 'The team without the ball, trying to stop the offense from scoring. They try to tackle runners and intercept passes.'
+    },
     'snap': {
       term: 'Snap',
       definition: 'The moment the center hikes the ball to the quarterback, starting the play. Everything before this is "pre-snap."'
