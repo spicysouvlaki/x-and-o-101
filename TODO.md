@@ -90,6 +90,20 @@
 
 ---
 
+## 9. Social/Sharing Previews
+- [ ] Add Open Graph meta tags for link previews
+  - og:title, og:description, og:image, og:url
+- [ ] Add Twitter Card meta tags
+- [ ] Create preview image (1200x630 recommended)
+- [ ] Test with:
+  - iMessage
+  - Twitter/X
+  - Facebook
+  - Slack
+  - Discord
+
+---
+
 ## Technical Debt
 - [ ] Route diagram SVGs need to be more exaggerated/clear
 - [ ] Click handlers on field positions not working
