@@ -1,0 +1,47 @@
+<section id="section-formations" class="section" data-section="2">
+  <div class="section-content">
+    <h2>Offensive Formations</h2>
+    <p class="section-intro">Before the snap, the offense lines up in a formation. This tells you a lot about what they might do.</p>
+
+    <div class="formation-toggle">
+      <button class="formation-btn active" data-formation="shotgun">Shotgun</button>
+      <button class="formation-btn" data-formation="under-center">Under Center</button>
+      <button class="formation-btn" data-formation="i-formation">I-Formation</button>
+      <button class="formation-btn" data-formation="empty">Empty</button>
+    </div>
+
+    <div class="field-container" id="formation-field">
+      <!-- Formation field SVG -->
+    </div>
+
+    <div class="play-toggle">
+      <span class="play-toggle-label">Play:</span>
+      <button class="play-btn active" data-play="none">Formation</button>
+      <button class="play-btn" data-play="run">Run</button>
+      <button class="play-btn" data-play="quick">Quick Pass</button>
+      <button class="play-btn" data-play="deep">Deep Pass</button>
+    </div>
+
+    <div class="formation-info" id="formation-info">
+      <h3 id="formation-name">Shotgun</h3>
+      <p id="formation-desc">QB stands 5-7 yards behind center. Gives more time to read the defense and throw. Most common passing formation in modern football.</p>
+      <div class="formation-tendencies">
+        <h4>Tendencies:</h4>
+        <div class="tendency-bars">
+          <div class="tendency-bar">
+            <span class="tendency-label">Pass</span>
+            <div class="tendency-fill pass" id="tendency-pass" style="width: 65%"></div>
+            <span class="tendency-value" id="tendency-pass-value">65%</span>
+          </div>
+          <div class="tendency-bar">
+            <span class="tendency-label">Run</span>
+            <div class="tendency-fill run" id="tendency-run" style="width: 35%"></div>
+            <span class="tendency-value" id="tendency-run-value">35%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button class="btn-next" data-next="3">Continue to Positions →</button>
+  </div>
+</section>

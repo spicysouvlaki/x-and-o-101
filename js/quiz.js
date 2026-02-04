@@ -162,7 +162,7 @@ const Quiz = (function() {
 
   // Get random coverage for quiz
   function getRandomCoverage() {
-    const coverages = ['Two-High Shell', 'Cover 3', 'Man Coverage', 'Cover 1'];
+    const coverages = ['Two-High Shell', 'Cover 3', 'Cover 1'];
     return coverages[Math.floor(Math.random() * coverages.length)];
   }
 

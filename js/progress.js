@@ -11,7 +11,7 @@ const Progress = (function() {
   };
 
   // Total sections
-  const TOTAL_SECTIONS = 6;
+  const TOTAL_SECTIONS = 7;
 
   // State
   let state = {
@@ -32,6 +32,27 @@ const Progress = (function() {
       state.completedSections = [];
     }
     state.currentSection = parseInt(localStorage.getItem(STORAGE_KEYS.CURRENT_SECTION)) || 1;
+  }
+
+  // Unlock sections up to and including the given section number
+  async function unlockSections(upToSection) {
+    // Load sections first if Sections module is available
+    if (typeof Sections !== 'undefined') {
+      await Sections.loadUpTo(upToSection);
+    }
+
+    for (let i = 1; i <= upToSection; i++) {
+      const section = document.querySelector(`[data-section="${i}"]`);
+      if (section) {
+        section.classList.add('unlocked');
+      }
+    }
+
+    // Hide loading indicator
+    const loader = document.getElementById('loading-indicator');
+    if (loader) {
+      loader.style.display = 'none';
+    }
   }
 
   // Save state to localStorage
@@ -77,11 +98,17 @@ const Progress = (function() {
     return (state.completedSections.length / TOTAL_SECTIONS) * 100;
   }
 
-  // Scroll to section
+  // Scroll to section with instant jump + fade-in animation
   function scrollToSection(sectionNum) {
     const section = document.querySelector(`[data-section="${sectionNum}"]`);
     if (section) {
-      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      // Instant scroll
+      section.scrollIntoView({ behavior: 'auto', block: 'start' });
+      // Animate section entrance
+      section.classList.remove('section-enter');
+      // Force reflow to restart animation
+      void section.offsetWidth;
+      section.classList.add('section-enter');
       setCurrentSection(sectionNum);
     }
   }
@@ -108,19 +135,20 @@ const Progress = (function() {
 
   // Set up next button handlers
   function setupNextButtons() {
-    const buttons = document.querySelectorAll('.btn-next');
+    // Use event delegation since sections are loaded dynamically
+    document.addEventListener('click', async (e) => {
+      const button = e.target.closest('.btn-next');
+      if (!button) return;
 
-    buttons.forEach(button => {
-      button.addEventListener('click', () => {
-        const nextSection = parseInt(button.dataset.next);
-        const currentSection = nextSection - 1;
+      const nextSection = parseInt(button.dataset.next);
+      const currentSection = nextSection - 1;
 
-        // Mark current section as completed
-        completeSection(currentSection);
+      // Mark current section as completed
+      completeSection(currentSection);
 
-        // Scroll to next section
-        scrollToSection(nextSection);
-      });
+      // Unlock and scroll to next section
+      await unlockSections(nextSection);
+      scrollToSection(nextSection);
     });
   }
 
@@ -141,21 +169,38 @@ const Progress = (function() {
   }
 
   // Reset progress
-  function reset() {
+  async function reset() {
     state.completedSections = [];
     state.currentSection = 1;
     saveState();
     updateProgressUI();
+
+    // Lock all sections except section 1
+    const sections = document.querySelectorAll('.section');
+    sections.forEach(section => {
+      section.classList.remove('unlocked');
+    });
+    await unlockSections(1);
+
     scrollToSection(1);
   }
 
   // Initialize progress module
-  function init() {
+  async function init() {
     loadState();
 
     // Get DOM elements
     progressBar = document.getElementById('progress-bar');
     progressText = document.getElementById('progress-text');
+
+    // Initialize sections loader
+    if (typeof Sections !== 'undefined') {
+      Sections.init('sections-container');
+    }
+
+    // Unlock sections based on progress (at minimum, unlock section 1)
+    const maxUnlocked = Math.max(state.currentSection, ...state.completedSections, 1);
+    await unlockSections(maxUnlocked);
 
     // Update UI
     updateProgressUI();
@@ -180,6 +225,7 @@ const Progress = (function() {
     isSectionCompleted,
     getCompletionPercentage,
     scrollToSection,
+    unlockSections,
     addObserver,
     reset,
     getState

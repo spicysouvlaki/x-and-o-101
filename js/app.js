@@ -4,7 +4,7 @@
  */
 
 const App = (function() {
-  // Coverage info data
+  // Coverage info data with stats
   const coverageInfo = {
     'Two-High Shell': {
       name: 'Two-High Shell (Cover 2/4)',
@@ -13,7 +13,10 @@ const App = (function() {
         'Look for the seam between safeties',
         'Attack the corners with deep outs',
         'Use the middle of the field'
-      ]
+      ],
+      strengths: { deep: 85, short: 60, run: 50 },
+      weaknesses: ['Deep middle (hole shot)', 'Seam routes', 'Corner routes'],
+      usage: 'Base defense, safe look'
     },
     'Cover 2': {
       name: 'Cover 2',
@@ -22,7 +25,10 @@ const App = (function() {
         'Attack the hole between corner and safety',
         'Seam routes down the middle',
         'Corner routes to the sideline'
-      ]
+      ],
+      strengths: { deep: 80, short: 70, run: 55 },
+      weaknesses: ['Deep middle', 'Sideline fade routes', 'TE seams'],
+      usage: 'Passing situations, prevent big plays'
     },
     'Cover 3': {
       name: 'Cover 3',
@@ -31,16 +37,10 @@ const App = (function() {
         'Attack the seams - only 3 deep defenders',
         'Use corner routes to the boundary',
         'Flood zones with multiple receivers'
-      ]
-    },
-    'Man Coverage': {
-      name: 'Man Coverage',
-      desc: 'Defenders follow specific receivers. Press or off coverage depending on technique.',
-      tips: [
-        'Quick slants beat man',
-        'Pick plays and rubs work well',
-        'Use speed mismatches'
-      ]
+      ],
+      strengths: { deep: 75, short: 65, run: 70 },
+      weaknesses: ['Seams between zones', 'Flat routes', '4 verticals'],
+      usage: 'Balanced defense, good run support'
     },
     'Cover 1': {
       name: 'Cover 1 (Man Free)',
@@ -49,26 +49,131 @@ const App = (function() {
         'Double moves can beat the safety',
         'Post routes attack the middle',
         'Quick game before safety reacts'
-      ]
+      ],
+      strengths: { deep: 70, short: 70, run: 75 },
+      weaknesses: ['Double moves', 'Posts and deep crosses', 'Bunch formations'],
+      usage: 'Blitz situations, red zone defense'
+    }
+  };
+
+  // Formation info data
+  const formationInfo = {
+    'shotgun': {
+      name: 'Shotgun',
+      desc: 'QB stands 5-7 yards behind center. Gives more time to read the defense and throw. Most common passing formation in modern football.',
+      passRate: 65,
+      runRate: 35
+    },
+    'under-center': {
+      name: 'Under Center',
+      desc: 'QB takes the snap directly from the center. Better for play-action fakes and short-yardage situations. Traditional pro-style formation.',
+      passRate: 45,
+      runRate: 55
+    },
+    'i-formation': {
+      name: 'I-Formation',
+      desc: 'Fullback lined up in front of the running back. Power running formation. Great for short-yardage and goal-line situations.',
+      passRate: 30,
+      runRate: 70
+    },
+    'empty': {
+      name: 'Empty Backfield',
+      desc: 'No running backs behind the QB. Five receivers spread out. Maximum passing threat but vulnerable to pressure.',
+      passRate: 85,
+      runRate: 15
     }
   };
 
   // State
   let quizState = null;
+  let currentFormation = 'shotgun';
+  let currentPlay = 'none';
   let currentCoverage = 'Two-High Shell';
   let currentCoverageQuizAnswer = null;
   let routeTab = 'pass';
 
-  // Initialize Section 1: Scoring
-  function initScoringSection() {
-    const field = Field.create('scoring-field', {
-      showEndZone: true,
-      showScoring: true,
-      yardLine: 50
+  // Section 1: Scoring - no initialization needed (uses static images)
+
+  // Initialize Section 2: Formations
+  function initFormationsSection() {
+    const field = Field.create('formation-field', {
+      yardLine: 25
+    });
+
+    // Helper to update field with current formation and play
+    function updateField() {
+      Field.setFormation(field, currentFormation, { play: currentPlay });
+    }
+
+    // Show initial formation
+    updateField();
+    updateFormationInfo(currentFormation);
+
+    // Set up formation toggle buttons
+    const formationButtons = document.querySelectorAll('.formation-btn');
+    formationButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Update active state
+        formationButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        // Update formation
+        currentFormation = btn.dataset.formation;
+        updateField();
+        updateFormationInfo(currentFormation);
+      });
+    });
+
+    // Set up play toggle buttons
+    const playButtons = document.querySelectorAll('.play-btn');
+    playButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Update active state
+        playButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        // Update play
+        currentPlay = btn.dataset.play;
+        updateField();
+      });
     });
   }
 
-  // Initialize Section 2: Positions
+  // Update formation info display with crossfade transition
+  function updateFormationInfo(formation) {
+    const info = formationInfo[formation] || formationInfo['shotgun'];
+    const nameEl = document.getElementById('formation-name');
+    const descEl = document.getElementById('formation-desc');
+    const passFill = document.getElementById('tendency-pass');
+    const runFill = document.getElementById('tendency-run');
+    const passValue = document.getElementById('tendency-pass-value');
+    const runValue = document.getElementById('tendency-run-value');
+    const infoContainer = document.querySelector('.formation-info');
+
+    // Add updating class for fade effect
+    if (infoContainer) {
+      infoContainer.classList.add('updating');
+
+      setTimeout(() => {
+        if (nameEl) nameEl.textContent = info.name;
+        if (descEl) descEl.textContent = info.desc;
+        if (passFill) passFill.style.width = `${info.passRate}%`;
+        if (runFill) runFill.style.width = `${info.runRate}%`;
+        if (passValue) passValue.textContent = `${info.passRate}%`;
+        if (runValue) runValue.textContent = `${info.runRate}%`;
+        infoContainer.classList.remove('updating');
+      }, 150);
+    } else {
+      if (nameEl) nameEl.textContent = info.name;
+      if (descEl) descEl.textContent = info.desc;
+      if (passFill) passFill.style.width = `${info.passRate}%`;
+      if (runFill) runFill.style.width = `${info.runRate}%`;
+      if (passValue) passValue.textContent = `${info.passRate}%`;
+      if (runValue) runValue.textContent = `${info.runRate}%`;
+    }
+  }
+
+  // Initialize Section 3: Positions
   function initPositionsSection() {
     const field = Field.create('positions-field', {
       yardLine: 25
@@ -96,7 +201,14 @@ const App = (function() {
       yardLine: 30
     });
 
-    Field.setCoverage(field, currentCoverage);
+    let currentDefensePlay = 'none';
+
+    // Helper to update field with current coverage and play
+    function updateField() {
+      Field.setCoverage(field, currentCoverage, { play: currentDefensePlay });
+    }
+
+    updateField();
     updateCoverageInfo(currentCoverage);
 
     // Set up coverage toggle buttons
@@ -109,23 +221,76 @@ const App = (function() {
 
         // Update coverage
         currentCoverage = btn.dataset.coverage;
-        Field.setCoverage(field, currentCoverage);
+        updateField();
         updateCoverageInfo(currentCoverage);
+      });
+    });
+
+    // Set up play toggle buttons
+    const playButtons = document.querySelectorAll('.defense-play-btn');
+    playButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Update active state
+        playButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        // Update play
+        currentDefensePlay = btn.dataset.play;
+        updateField();
       });
     });
   }
 
-  // Update coverage info display
+  // Update coverage info display with crossfade transition
   function updateCoverageInfo(coverage) {
     const info = coverageInfo[coverage] || coverageInfo['Two-High Shell'];
     const nameEl = document.getElementById('coverage-name');
     const descEl = document.getElementById('coverage-desc');
     const tipsList = document.getElementById('coverage-tips-list');
+    const weaknessesList = document.getElementById('coverage-weaknesses-list');
+    const usageEl = document.getElementById('coverage-usage');
+    const deepFill = document.getElementById('strength-deep');
+    const shortFill = document.getElementById('strength-short');
+    const runFill = document.getElementById('strength-run');
+    const infoContainer = document.querySelector('.coverage-info');
 
-    if (nameEl) nameEl.textContent = info.name;
-    if (descEl) descEl.textContent = info.desc;
-    if (tipsList) {
-      tipsList.innerHTML = info.tips.map(tip => `<li>${tip}</li>`).join('');
+    // Helper to set strength bar with green/red coloring
+    function setStrengthBar(el, value) {
+      if (!el) return;
+      el.style.width = `${value}%`;
+      el.classList.remove('strong', 'weak');
+      el.classList.add(value >= 65 ? 'strong' : 'weak');
+    }
+
+    // Add updating class for fade effect
+    if (infoContainer) {
+      infoContainer.classList.add('updating');
+
+      setTimeout(() => {
+        if (nameEl) nameEl.textContent = info.name;
+        if (descEl) descEl.textContent = info.desc;
+        if (tipsList) {
+          tipsList.innerHTML = info.tips.map(tip => `<li>${tip}</li>`).join('');
+        }
+        if (weaknessesList && info.weaknesses) {
+          weaknessesList.innerHTML = info.weaknesses.map(w => `<li>${w}</li>`).join('');
+        }
+        if (usageEl && info.usage) {
+          usageEl.textContent = info.usage;
+        }
+        if (info.strengths) {
+          setStrengthBar(deepFill, info.strengths.deep);
+          setStrengthBar(shortFill, info.strengths.short);
+          setStrengthBar(runFill, info.strengths.run);
+        }
+        infoContainer.classList.remove('updating');
+      }, 150);
+    } else {
+      if (nameEl) nameEl.textContent = info.name;
+      if (descEl) descEl.textContent = info.desc;
+      if (tipsList) {
+        tipsList.innerHTML = info.tips.map(tip => `<li>${tip}</li>`).join('');
+      }
     }
   }
 
@@ -143,7 +308,8 @@ const App = (function() {
       quizField = Field.create('defense-quiz-field', {
         yardLine: 30
       });
-      Field.setCoverage(quizField, currentCoverageQuizAnswer);
+      // Don't show zones in quiz - that would give away the answer!
+      Field.setCoverage(quizField, currentCoverageQuizAnswer, { showZones: false });
 
       // Reset option states
       const options = document.querySelectorAll('#coverage-quiz-options .quiz-option');
@@ -188,10 +354,30 @@ const App = (function() {
         // Disable all options
         options.forEach(o => o.disabled = true);
 
-        // Update stats
-        document.getElementById('coverage-streak').textContent = streak;
-        document.getElementById('coverage-correct').textContent = correct;
-        document.getElementById('coverage-total').textContent = total;
+        // Update stats with pop animation
+        const streakEl = document.getElementById('coverage-streak');
+        const correctEl = document.getElementById('coverage-correct');
+        const totalEl = document.getElementById('coverage-total');
+
+        [streakEl, correctEl, totalEl].forEach(el => {
+          el.classList.remove('stat-pop');
+          void el.offsetWidth; // Force reflow
+          el.classList.add('stat-pop');
+        });
+
+        streakEl.textContent = streak;
+        correctEl.textContent = correct;
+        totalEl.textContent = total;
+
+        // Add fire emoji for 3+ streak
+        const streakCard = streakEl.closest('.stat-card');
+        if (streak >= 3) {
+          streakEl.classList.add('streak-fire');
+          if (streakCard) streakCard.classList.add('hot');
+        } else {
+          streakEl.classList.remove('streak-fire');
+          if (streakCard) streakCard.classList.remove('hot');
+        }
 
         // Show feedback
         const feedback = document.getElementById('coverage-quiz-feedback');
@@ -201,8 +387,8 @@ const App = (function() {
             ? '<div class="quiz-feedback-title">Correct!</div>'
             : `<div class="quiz-feedback-title">Incorrect</div><p class="quiz-feedback-explanation">That was ${currentCoverageQuizAnswer}</p>`;
 
-          // Add next button
-          feedback.innerHTML += '<button class="quiz-next-btn" id="coverage-next-btn">Next Coverage →</button>';
+          // Add next button with fade-in animation
+          feedback.innerHTML += '<button class="quiz-next-btn fade-in" id="coverage-next-btn">Next Coverage →</button>';
           document.getElementById('coverage-next-btn').addEventListener('click', loadNewCoverageQuiz);
         }
       });
@@ -278,16 +464,36 @@ const App = (function() {
       feedback.innerHTML = `
         <div class="quiz-feedback-title">${result.isCorrect ? 'Correct!' : 'Incorrect'}</div>
         <p class="quiz-feedback-explanation">${result.explanation}</p>
-        <button class="quiz-next-btn" id="puzzle-next-btn">Next Play →</button>
+        <button class="quiz-next-btn fade-in" id="puzzle-next-btn">Next Play →</button>
       `;
 
       document.getElementById('puzzle-next-btn').addEventListener('click', loadNewPuzzle);
 
-      // Update stats
+      // Update stats with pop animation
       const state = Quiz.getState();
-      document.getElementById('puzzle-rating').textContent = state.rating;
-      document.getElementById('puzzle-streak').textContent = state.streak;
-      document.getElementById('puzzle-correct').textContent = state.correct;
+      const ratingEl = document.getElementById('puzzle-rating');
+      const streakEl = document.getElementById('puzzle-streak');
+      const correctEl = document.getElementById('puzzle-correct');
+
+      [ratingEl, streakEl, correctEl].forEach(el => {
+        el.classList.remove('stat-pop');
+        void el.offsetWidth; // Force reflow
+        el.classList.add('stat-pop');
+      });
+
+      ratingEl.textContent = state.rating;
+      streakEl.textContent = state.streak;
+      correctEl.textContent = state.correct;
+
+      // Add fire emoji and hot glow for 3+ streak
+      const streakCard = streakEl.closest('.stat-card');
+      if (state.streak >= 3) {
+        streakEl.classList.add('streak-fire');
+        if (streakCard) streakCard.classList.add('hot');
+      } else {
+        streakEl.classList.remove('streak-fire');
+        if (streakCard) streakCard.classList.remove('hot');
+      }
 
       // Show analytics
       const analytics = Quiz.lookupAnalytics(puzzle);
@@ -393,8 +599,18 @@ const App = (function() {
     // Initialize Quiz (loads data)
     await Quiz.init();
 
-    // Initialize Progress
-    Progress.init();
+    // Register section initializers (called when each section loads)
+    if (typeof Sections !== 'undefined') {
+      Sections.onLoad(2, initFormationsSection);
+      Sections.onLoad(3, initPositionsSection);
+      Sections.onLoad(4, initRoutesSection);
+      Sections.onLoad(5, initDefenseSection);
+      Sections.onLoad(6, initCoverageQuizSection);
+      Sections.onLoad(7, initPuzzleSection);
+    }
+
+    // Initialize Progress (this will load initial sections)
+    await Progress.init();
 
     // Set up progress observer
     Progress.addObserver((event, data) => {
@@ -402,14 +618,6 @@ const App = (function() {
         checkCompletion();
       }
     });
-
-    // Initialize all sections
-    initScoringSection();
-    initPositionsSection();
-    initDefenseSection();
-    initCoverageQuizSection();
-    initPuzzleSection();
-    initRoutesSection();
 
     // Check if already completed
     checkCompletion();

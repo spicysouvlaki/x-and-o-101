@@ -69,6 +69,16 @@
   transition: transform 0.2s;
 }
 
+/* Player pop animation when coverage changes */
+.player-marker.pop {
+  animation: playerPop 0.2s ease-out;
+}
+
+@keyframes playerPop {
+  from { transform: scale(0); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
 .player-marker:hover {
   transform: scale(1.2);
 }
@@ -144,16 +154,135 @@
 .zone-highlight {
   fill: rgba(239, 68, 68, 0.2);
   stroke: rgba(239, 68, 68, 0.5);
-  stroke-width: 0.5;
-  stroke-dasharray: 2, 1;
+  stroke-width: 1;
 }
 
-.zone-deep {
-  fill: rgba(239, 68, 68, 0.15);
+/* Defensive coverage play art */
+
+/* Zone circles (blue) */
+.zone-circle {
+  fill: rgba(59, 130, 246, 0.4);
+  stroke: #3b82f6;
+  stroke-width: 1;
+  opacity: 0;
+  animation: zoneAppear 0.3s ease-out forwards;
 }
 
-.zone-underneath {
-  fill: rgba(251, 191, 36, 0.15);
+.zone-circle.safety-help {
+  fill: rgba(59, 130, 246, 0.25);
+  stroke-dasharray: 2, 2;
+}
+
+@keyframes zoneAppear {
+  from { opacity: 0; transform: scale(0.5); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Zone coverage arrows (blue) */
+.zone-arrow {
+  stroke: #3b82f6;
+  stroke-width: 1.5;
+  fill: none;
+  opacity: 0;
+  animation: arrowAppear 0.3s ease-out forwards;
+}
+
+.zone-arrow-head {
+  fill: #3b82f6;
+  opacity: 0;
+  animation: arrowAppear 0.3s ease-out forwards;
+}
+
+/* Man coverage arrows (red) */
+.man-arrow {
+  stroke: #ef4444;
+  stroke-width: 1.5;
+  fill: none;
+  opacity: 0;
+  animation: arrowAppear 0.3s ease-out forwards;
+}
+
+.man-arrow-head {
+  fill: #ef4444;
+  opacity: 0;
+  animation: arrowAppear 0.3s ease-out forwards;
+}
+
+@keyframes arrowAppear {
+  from { opacity: 0; }
+  to { opacity: 0.95; }
+}
+
+/* Offensive play art */
+.play-path {
+  fill: none;
+  stroke-width: 1.5;
+  opacity: 0;
+  animation: playAppear 0.3s ease-out forwards;
+}
+
+.play-arrow {
+  opacity: 0;
+  animation: playAppear 0.3s ease-out forwards;
+}
+
+@keyframes playAppear {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Route paths (blue for passing) */
+.play-route {
+  stroke: #3b82f6;
+}
+
+.play-route-arrow {
+  fill: #3b82f6;
+}
+
+/* Run paths (green) */
+.play-run {
+  stroke: #22c55e;
+  stroke-width: 2;
+}
+
+.play-run-arrow {
+  fill: #22c55e;
+}
+
+/* Block paths (orange) */
+.play-block {
+  stroke: #f97316;
+  stroke-dasharray: 2, 2;
+}
+
+.play-block-arrow {
+  fill: #f97316;
+}
+
+/* Fake/play action (gray dashed) */
+.play-fake {
+  stroke: #9ca3af;
+  stroke-dasharray: 3, 2;
+}
+
+.play-fake-arrow {
+  fill: #9ca3af;
+}
+
+/* Blitz paths (red for rushers) */
+.blitz-path {
+  stroke: #ef4444;
+  stroke-width: 2;
+  fill: none;
+  opacity: 0;
+  animation: playAppear 0.3s ease-out forwards;
+}
+
+.blitz-arrow {
+  fill: #ef4444;
+  opacity: 0;
+  animation: playAppear 0.3s ease-out forwards;
 }
 
 /* Interactive player states */

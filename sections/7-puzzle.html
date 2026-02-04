@@ -1,0 +1,71 @@
+<section id="section-puzzle" class="section" data-section="7">
+  <div class="section-content">
+    <h2>Run or Pass?</h2>
+    <p class="section-intro">Make the call based on the situation. Think like an NFL quarterback.</p>
+
+    <div class="situation-display" id="situation-display">
+      <div class="situation-header">
+        <span class="situation-down" id="puzzle-down">3rd & 7</span>
+        <span class="situation-field" id="puzzle-field-pos">Opponent 43</span>
+      </div>
+      <div class="situation-details">
+        <span class="detail"><strong>Clock:</strong> <span id="puzzle-clock">5:42</span></span>
+        <span class="detail"><strong>Score:</strong> <span id="puzzle-score">14-10</span></span>
+        <span class="detail"><strong>Formation:</strong> <span id="puzzle-play">Gun Formation</span></span>
+      </div>
+    </div>
+
+    <div class="field-container" id="puzzle-field">
+      <!-- Puzzle field with defense -->
+    </div>
+
+    <div class="quiz-container" id="puzzle-quiz">
+      <div class="quiz-options" id="puzzle-options">
+        <!-- Options rendered by JS -->
+      </div>
+      <div class="quiz-feedback" id="puzzle-feedback"></div>
+    </div>
+
+    <div class="analytics-display" id="analytics-display" style="display: none;">
+      <h4>NFL Analytics</h4>
+      <div class="analytics-bars">
+        <div class="analytics-bar">
+          <span class="bar-label">Pass Rate</span>
+          <div class="bar-container">
+            <div class="bar-fill pass" id="analytics-pass-rate"></div>
+          </div>
+          <span class="bar-value" id="analytics-pass-value">0%</span>
+        </div>
+        <div class="analytics-bar">
+          <span class="bar-label">Run Rate</span>
+          <div class="bar-container">
+            <div class="bar-fill run" id="analytics-run-rate"></div>
+          </div>
+          <span class="bar-value" id="analytics-run-value">0%</span>
+        </div>
+      </div>
+      <p class="analytics-insight" id="analytics-insight"></p>
+    </div>
+
+    <div class="puzzle-stats">
+      <div class="stat-card">
+        <span class="stat-value" id="puzzle-rating">1200</span>
+        <span class="stat-label">Rating</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-value" id="puzzle-streak">0</span>
+        <span class="stat-label">Streak</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-value" id="puzzle-correct">0</span>
+        <span class="stat-label">Correct</span>
+      </div>
+    </div>
+
+        <div class="completion-banner" id="completion-banner" style="display: none;">
+      <h3>Congratulations!</h3>
+      <p>You've completed X's and O's 101. You now understand the basics of reading defenses and making quarterback decisions.</p>
+      <button class="btn-primary" id="restart-btn">Start Over</button>
+    </div>
+  </div>
+</section>
