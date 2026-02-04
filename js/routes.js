@@ -9,8 +9,8 @@ const Routes = (function() {
     'Drag': {
       name: 'Drag',
       description: 'Shallow crossing route, ~5 yards across the field. High-percentage throw.',
-      beats: ['Zone Coverage', 'Cover 2', 'Cover 3'],
-      tips: ['Quick throw against zone', 'Look for soft spots in coverage', 'Great hot route against blitz']
+      beats: ['<span class="term" data-term="zone">Zone</span> Coverage', 'Cover 2', 'Cover 3'],
+      tips: ['Quick throw against <span class="term" data-term="zone">zone</span>', 'Look for soft spots in <span class="term" data-term="coverage">coverage</span>', 'Great <span class="term" data-term="hot-route">hot route</span> against <span class="term" data-term="blitz">blitz</span>']
     },
     'Corner': {
       name: 'Corner',
@@ -21,20 +21,20 @@ const Routes = (function() {
     'Seam': {
       name: 'Seam',
       description: 'Vertical route up the middle, between hash marks.',
-      beats: ['Cover 3', 'Single-High Safety'],
-      tips: ['Attack the middle of the field', 'Great for tight ends', 'Read the safety - throw if he commits']
+      beats: ['Cover 3', '<span class="term" data-term="single-high">Single-High</span> Safety'],
+      tips: ['Attack the middle of the field', 'Great for tight ends', '<span class="term" data-term="read">Read</span> the safety - throw if he commits']
     },
     'Slant': {
       name: 'Slant',
       description: 'Quick inside break at 45 degrees, 3-5 yards.',
-      beats: ['Man Coverage', 'Press Coverage'],
-      tips: ['Quick throw beats man', 'Hot route against pressure', 'Receiver uses inside leverage']
+      beats: ['<span class="term" data-term="man">Man</span> Coverage', 'Press Coverage'],
+      tips: ['Quick throw beats <span class="term" data-term="man">man</span>', '<span class="term" data-term="hot-route">Hot route</span> against pressure', 'Receiver uses inside leverage']
     },
     'Post': {
       name: 'Post',
       description: 'Deep route breaking toward the goalpost, 12-15 yards.',
-      beats: ['Cover 1', 'Single-High Safety'],
-      tips: ['Attack single-high safety', 'Big play potential', 'Read safety rotation']
+      beats: ['Cover 1', '<span class="term" data-term="single-high">Single-High</span> Safety'],
+      tips: ['Attack <span class="term" data-term="single-high">single-high</span> safety', 'Big play potential', '<span class="term" data-term="read">Read</span> safety rotation']
     },
     'Out': {
       name: 'Out',
@@ -44,27 +44,27 @@ const Routes = (function() {
     },
     'Fade': {
       name: 'Fade',
-      description: 'Straight vertical along the sideline. Red zone specialty.',
-      beats: ['Man Coverage', 'Tight Coverage'],
-      tips: ['Back shoulder throw', 'Perfect for red zone', 'Trust your receiver in one-on-one']
+      description: 'Straight vertical along the sideline. <span class="term" data-term="red-zone">Red zone</span> specialty.',
+      beats: ['<span class="term" data-term="man">Man</span> Coverage', 'Tight Coverage'],
+      tips: ['Back shoulder throw', 'Perfect for <span class="term" data-term="red-zone">red zone</span>', 'Trust your receiver in one-on-one']
     },
     'Flat': {
       name: 'Flat',
-      description: 'Quick route to the flat area near the sideline.',
-      beats: ['Blitz', 'Zone Coverage'],
-      tips: ['Safety valve against pressure', 'Check down option', 'Get the ball out quick']
+      description: 'Quick route to the <span class="term" data-term="flat">flat</span> area near the sideline.',
+      beats: ['<span class="term" data-term="blitz">Blitz</span>', '<span class="term" data-term="zone">Zone</span> Coverage'],
+      tips: ['Safety valve against pressure', '<span class="term" data-term="check-down">Check down</span> option', 'Get the ball out quick']
     },
     'Screen': {
       name: 'Screen',
-      description: 'Receiver or RB catches behind the line with blockers ahead.',
+      description: 'Receiver or RB catches behind the <span class="term" data-term="line-of-scrimmage">line</span> with blockers ahead.',
       beats: ['Heavy Pass Rush', 'Aggressive Defense'],
-      tips: ['Use against blitz-heavy defenses', 'Let blockers set up', 'Patience is key']
+      tips: ['Use against <span class="term" data-term="blitz">blitz</span>-heavy defenses', 'Let blockers set up', 'Patience is key']
     },
     'Check Down': {
       name: 'Check Down',
       description: 'Short dump-off to RB or nearby receiver. Last resort.',
-      beats: ['Deep Coverage', 'Prevent Defense'],
-      tips: ['Take what the defense gives', 'Live to play another down', 'Better than a sack']
+      beats: ['Deep <span class="term" data-term="coverage">Coverage</span>', 'Prevent Defense'],
+      tips: ['Take what the defense gives', 'Live to play another <span class="term" data-term="down">down</span>', 'Better than a sack']
     },
     'Dig': {
       name: 'Dig',

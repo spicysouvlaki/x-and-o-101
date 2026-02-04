@@ -8,9 +8,9 @@ const App = (function() {
   const coverageInfo = {
     'Two-High Shell': {
       name: 'Two-High Shell (Cover 2/4)',
-      desc: 'Two safeties deep split the field in half. Corners play underneath. Vulnerable to deep middle and seam routes.',
+      desc: 'Two safeties deep split the field in half. Corners play underneath. Vulnerable to deep middle and <span class="term" data-term="seam">seam</span> routes.',
       tips: [
-        'Look for the seam between safeties',
+        'Look for the <span class="term" data-term="seam">seam</span> between safeties',
         'Attack the corners with deep outs',
         'Use the middle of the field'
       ],
@@ -20,10 +20,10 @@ const App = (function() {
     },
     'Cover 2': {
       name: 'Cover 2',
-      desc: 'Two safeties deep, corners in flats. Middle is open between the safeties.',
+      desc: 'Two safeties deep, corners in <span class="term" data-term="flat">flats</span>. Middle is open between the safeties.',
       tips: [
         'Attack the hole between corner and safety',
-        'Seam routes down the middle',
+        '<span class="term" data-term="seam">Seam</span> routes down the middle',
         'Corner routes to the sideline'
       ],
       strengths: { deep: 80, short: 70, run: 55 },
@@ -32,9 +32,9 @@ const App = (function() {
     },
     'Cover 3': {
       name: 'Cover 3',
-      desc: 'Three defenders deep (FS + 2 corners), four underneath. Single-high safety look.',
+      desc: 'Three defenders deep (FS + 2 corners), four underneath. <span class="term" data-term="single-high">Single-high</span> safety <span class="term" data-term="look">look</span>.',
       tips: [
-        'Attack the seams - only 3 deep defenders',
+        'Attack the <span class="term" data-term="seam">seams</span> - only 3 deep defenders',
         'Use corner routes to the boundary',
         'Flood zones with multiple receivers'
       ],
@@ -44,7 +44,7 @@ const App = (function() {
     },
     'Cover 1': {
       name: 'Cover 1 (Man Free)',
-      desc: 'Man coverage with single-high safety help. Safety reads QB and helps over the top.',
+      desc: '<span class="term" data-term="man">Man coverage</span> with <span class="term" data-term="single-high">single-high</span> safety help. Safety <span class="term" data-term="read">reads</span> QB and helps over the top.',
       tips: [
         'Double moves can beat the safety',
         'Post routes attack the middle',
@@ -60,25 +60,25 @@ const App = (function() {
   const formationInfo = {
     'shotgun': {
       name: 'Shotgun',
-      desc: 'QB stands 5-7 yards behind center. Gives more time to read the defense and throw. Most common passing formation in modern football.',
+      desc: 'QB stands 5-7 yards behind center. Gives more time to <span class="term" data-term="read">read</span> the defense and throw. Most common passing <span class="term" data-term="formation">formation</span> in modern football.',
       passRate: 65,
       runRate: 35
     },
     'under-center': {
       name: 'Under Center',
-      desc: 'QB takes the snap directly from the center. Better for play-action fakes and short-yardage situations. Traditional pro-style formation.',
+      desc: 'QB takes the <span class="term" data-term="snap">snap</span> directly from the center. Better for <span class="term" data-term="play-action">play-action</span> fakes and short-yardage situations. Traditional pro-style <span class="term" data-term="formation">formation</span>.',
       passRate: 45,
       runRate: 55
     },
     'i-formation': {
       name: 'I-Formation',
-      desc: 'Fullback lined up in front of the running back. Power running formation. Great for short-yardage and goal-line situations.',
+      desc: 'Fullback lined up in front of the running back. Power running <span class="term" data-term="formation">formation</span>. Great for short-yardage and goal-line situations.',
       passRate: 30,
       runRate: 70
     },
     'empty': {
       name: 'Empty Backfield',
-      desc: 'No running backs behind the QB. Five receivers spread out. Maximum passing threat but vulnerable to pressure.',
+      desc: 'No running backs behind the QB. Five receivers spread out. Maximum passing threat but vulnerable to pressure from a <span class="term" data-term="blitz">blitz</span>.',
       passRate: 85,
       runRate: 15
     }
@@ -156,7 +156,7 @@ const App = (function() {
 
       setTimeout(() => {
         if (nameEl) nameEl.textContent = info.name;
-        if (descEl) descEl.textContent = info.desc;
+        if (descEl) descEl.innerHTML = info.desc;
         if (passFill) passFill.style.width = `${info.passRate}%`;
         if (runFill) runFill.style.width = `${info.runRate}%`;
         if (passValue) passValue.textContent = `${info.passRate}%`;
@@ -165,7 +165,7 @@ const App = (function() {
       }, 150);
     } else {
       if (nameEl) nameEl.textContent = info.name;
-      if (descEl) descEl.textContent = info.desc;
+      if (descEl) descEl.innerHTML = info.desc;
       if (passFill) passFill.style.width = `${info.passRate}%`;
       if (runFill) runFill.style.width = `${info.runRate}%`;
       if (passValue) passValue.textContent = `${info.passRate}%`;
@@ -246,7 +246,7 @@ const App = (function() {
 
       setTimeout(() => {
         if (nameEl) nameEl.textContent = info.name;
-        if (descEl) descEl.textContent = info.desc;
+        if (descEl) descEl.innerHTML = info.desc;
         if (tipsList) {
           tipsList.innerHTML = info.tips.map(tip => `<li>${tip}</li>`).join('');
         }
@@ -265,7 +265,7 @@ const App = (function() {
       }, 150);
     } else {
       if (nameEl) nameEl.textContent = info.name;
-      if (descEl) descEl.textContent = info.desc;
+      if (descEl) descEl.innerHTML = info.desc;
       if (tipsList) {
         tipsList.innerHTML = info.tips.map(tip => `<li>${tip}</li>`).join('');
       }
@@ -525,7 +525,7 @@ const App = (function() {
       detail.style.display = 'block';
 
       document.getElementById('route-detail-name').textContent = info.name;
-      document.getElementById('route-detail-desc').textContent = info.description;
+      document.getElementById('route-detail-desc').innerHTML = info.description;
       document.getElementById('route-tips-list').innerHTML =
         info.tips.map(tip => `<li>${tip}</li>`).join('');
 
