@@ -275,8 +275,9 @@ const Field = (function() {
         { x: 85, y: -7, label: 'CB' }
       ],
       linebackers: [
-        { x: 35, y: -3, label: 'LB' },
-        { x: 65, y: -3, label: 'LB' }
+        { x: 35, y: -4, label: 'LB' },
+        { x: 50, y: -3, label: 'LB' },
+        { x: 65, y: -4, label: 'LB' }
       ],
       dline: [
         { x: 35, y: 0, label: 'DE' },
@@ -295,8 +296,9 @@ const Field = (function() {
         { x: 85, y: -7, label: 'CB' }
       ],
       linebackers: [
-        { x: 35, y: -3, label: 'LB' },
-        { x: 65, y: -3, label: 'LB' }
+        { x: 35, y: -4, label: 'LB' },
+        { x: 50, y: -3, label: 'LB' },
+        { x: 65, y: -4, label: 'LB' }
       ],
       dline: [
         { x: 35, y: 0, label: 'DE' },
@@ -315,8 +317,9 @@ const Field = (function() {
         { x: 85, y: -7, label: 'CB' }
       ],
       linebackers: [
-        { x: 35, y: -3, label: 'LB' },
-        { x: 65, y: -3, label: 'LB' }
+        { x: 35, y: -4, label: 'LB' },
+        { x: 50, y: -3, label: 'LB' },
+        { x: 65, y: -4, label: 'LB' }
       ],
       dline: [
         { x: 35, y: 0, label: 'DE' },
@@ -342,12 +345,14 @@ const Field = (function() {
       dline: [
         { x: 35, y: 0, label: 'DE' },
         { x: 47, y: 0, label: 'DT' },
+        { x: 53, y: 0, label: 'DT' },
         { x: 65, y: 0, label: 'DE' }
       ]
     },
     'Man Coverage': {
       safeties: [
-        { x: 50, y: -12, label: 'FS' }
+        { x: 50, y: -12, label: 'FS' },
+        { x: 60, y: -6, label: 'SS' }
       ],
       corners: [
         { x: 15, y: -2, label: 'CB' },
@@ -382,6 +387,7 @@ const Field = (function() {
       dline: [
         { x: 35, y: 0, label: 'DE' },
         { x: 47, y: 0, label: 'DT' },
+        { x: 53, y: 0, label: 'DT' },
         { x: 65, y: 0, label: 'DE' }
       ]
     }
