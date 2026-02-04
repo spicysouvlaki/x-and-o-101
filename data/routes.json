@@ -1,0 +1,114 @@
+{
+  "pass": [
+    {
+      "name": "Drag",
+      "description": "Shallow crossing route, ~5 yards across the field. High-percentage throw.",
+      "beats": ["Zone Coverage", "Cover 2", "Cover 3"],
+      "tips": ["Quick throw against zone", "Look for soft spots in coverage", "Great hot route against blitz"]
+    },
+    {
+      "name": "Corner",
+      "description": "Deep outside break toward the corner of the end zone. 15-20 yards.",
+      "beats": ["Cover 2", "Two-High Shell"],
+      "tips": ["Attacks the hole between corner and safety", "Best thrown to the sideline", "Timing route - throw before the break"]
+    },
+    {
+      "name": "Seam",
+      "description": "Vertical route up the middle, between hash marks.",
+      "beats": ["Cover 3", "Single-High Safety"],
+      "tips": ["Attack the middle of the field", "Great for tight ends", "Read the safety - throw if he commits"]
+    },
+    {
+      "name": "Slant",
+      "description": "Quick inside break at 45 degrees, 3-5 yards.",
+      "beats": ["Man Coverage", "Press Coverage"],
+      "tips": ["Quick throw beats man", "Hot route against pressure", "Receiver uses inside leverage"]
+    },
+    {
+      "name": "Post",
+      "description": "Deep route breaking toward the goalpost, 12-15 yards.",
+      "beats": ["Cover 1", "Single-High Safety"],
+      "tips": ["Attack single-high safety", "Big play potential", "Read safety rotation"]
+    },
+    {
+      "name": "Out",
+      "description": "Sharp 90-degree break toward the sideline, 10-12 yards.",
+      "beats": ["Zone Coverage", "Soft Coverage"],
+      "tips": ["Timing throw to the sideline", "Receiver must sell vertical first", "Watch for underneath defenders"]
+    },
+    {
+      "name": "Fade",
+      "description": "Straight vertical along the sideline. Red zone specialty.",
+      "beats": ["Man Coverage", "Tight Coverage"],
+      "tips": ["Back shoulder throw", "Perfect for red zone", "Trust your receiver in one-on-one"]
+    },
+    {
+      "name": "Flat",
+      "description": "Quick route to the flat area near the sideline.",
+      "beats": ["Blitz", "Zone Coverage"],
+      "tips": ["Safety valve against pressure", "Check down option", "Get the ball out quick"]
+    },
+    {
+      "name": "Screen",
+      "description": "Receiver or RB catches behind the line with blockers ahead.",
+      "beats": ["Heavy Pass Rush", "Aggressive Defense"],
+      "tips": ["Use against blitz-heavy defenses", "Let blockers set up", "Patience is key"]
+    },
+    {
+      "name": "Check Down",
+      "description": "Short dump-off to RB or nearby receiver. Last resort.",
+      "beats": ["Deep Coverage", "Prevent Defense"],
+      "tips": ["Take what the defense gives", "Live to play another down", "Better than a sack"]
+    },
+    {
+      "name": "Dig",
+      "description": "In-breaking route at 12-15 yards. Sharp 90-degree cut.",
+      "beats": ["Cover 3", "Zone Coverage"],
+      "tips": ["Attacks the middle of zone", "Sit in the soft spot", "Great for moving the chains"]
+    },
+    {
+      "name": "Curl",
+      "description": "Stop and turn back toward the QB at 10-12 yards.",
+      "beats": ["Zone Coverage", "Off Coverage"],
+      "tips": ["Receiver finds the hole", "Timing route", "Good for third and medium"]
+    }
+  ],
+  "run": [
+    {
+      "name": "Inside Zone",
+      "description": "Zone blocking scheme between the tackles. RB reads blocks and finds cutback.",
+      "beats": ["Aggressive LBs", "Slanting D-Line"],
+      "tips": ["RB reads the blocks", "One cut and go", "Great for short yardage"]
+    },
+    {
+      "name": "Outside Zone",
+      "description": "Stretch play toward the edge with cutback option.",
+      "beats": ["Two-High Safety", "Spread Defense"],
+      "tips": ["Get RB in space", "Use athleticism", "Cutback if edge is lost"]
+    },
+    {
+      "name": "Power Run",
+      "description": "Pulling guard leads through the hole. Downhill running.",
+      "beats": ["Light Boxes", "Single-High Safety"],
+      "tips": ["Physical, downhill run", "Follow the pulling guard", "Pound the defense"]
+    },
+    {
+      "name": "Counter",
+      "description": "Misdirection - backfield action one way, linemen pull the other.",
+      "beats": ["Aggressive LBs", "Over-pursuing Defense"],
+      "tips": ["Sell the fake", "Patience for the cutback", "Great on short yardage"]
+    },
+    {
+      "name": "Draw Play",
+      "description": "Fake pass, delayed handoff. Uses pass rush against itself.",
+      "beats": ["Pass Rush Heavy", "Obvious Pass Situation"],
+      "tips": ["Set up with pass looks", "RB waits for lanes", "Surprise element"]
+    },
+    {
+      "name": "QB Power",
+      "description": "QB keeps and runs with lead blockers. Read option or designed.",
+      "beats": ["Light Boxes", "RB-focused Defense"],
+      "tips": ["Use mobile QB", "Read the unblocked defender", "Take what they give"]
+    }
+  ]
+}

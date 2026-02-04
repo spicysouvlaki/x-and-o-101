@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>X's and O's 101 - Learn Football Strategy</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/field.css">
+  <link rel="stylesheet" href="css/quiz.css">
+</head>
+<body>
+  <!-- Progress Bar (sticky) -->
+  <header class="progress-header">
+    <div class="progress-container">
+      <div class="progress-bar" id="progress-bar"></div>
+    </div>
+    <span class="progress-text" id="progress-text">0% Complete</span>
+  </header>
+
+  <main>
+    <!-- Section 1: Scoring -->
+    <section id="section-scoring" class="section" data-section="1">
+      <div class="section-content">
+        <h1>X's and O's 101</h1>
+        <h2>How Scoring Works</h2>
+        <p class="section-intro">Football is simple: move the ball into the end zone to score.</p>
+
+        <div class="field-container" id="scoring-field">
+          <!-- SVG field will be rendered here -->
+        </div>
+
+        <div class="scoring-info">
+          <div class="score-card">
+            <span class="score-points">6</span>
+            <span class="score-label">Touchdown</span>
+            <span class="score-desc">Ball crosses goal line</span>
+          </div>
+          <div class="score-card">
+            <span class="score-points">+1/2</span>
+            <span class="score-label">Extra Point</span>
+            <span class="score-desc">Kick (+1) or 2-pt conversion (+2)</span>
+          </div>
+          <div class="score-card">
+            <span class="score-points">3</span>
+            <span class="score-label">Field Goal</span>
+            <span class="score-desc">Kick through uprights</span>
+          </div>
+        </div>
+
+        <button class="btn-next" data-next="2">Continue to Positions →</button>
+      </div>
+    </section>
+
+    <!-- Section 2: Positions -->
+    <section id="section-positions" class="section" data-section="2">
+      <div class="section-content">
+        <h2>The Offense</h2>
+        <p class="section-intro">Tap any position to learn what they do.</p>
+
+        <div class="field-container" id="positions-field">
+          <!-- Interactive positions field -->
+        </div>
+
+        <div class="position-info" id="position-info">
+          <h3 id="position-name">Quarterback (QB)</h3>
+          <p id="position-desc">The field general. Reads the defense, calls plays, throws the ball or hands off to runners.</p>
+        </div>
+
+        <div class="position-quiz" id="position-quiz" style="display: none;">
+          <h3>Quick Quiz</h3>
+          <p id="position-quiz-question">Which position throws the ball?</p>
+          <div class="quiz-options" id="position-quiz-options">
+            <!-- Options rendered by JS -->
+          </div>
+        </div>
+
+        <button class="btn-next" data-next="3">Continue to Defense →</button>
+      </div>
+    </section>
+
+    <!-- Section 3: Defense Choices -->
+    <section id="section-defense" class="section" data-section="3">
+      <div class="section-content">
+        <h2>Reading the Defense</h2>
+        <p class="section-intro">As a QB, you need to recognize what the defense is doing before the snap.</p>
+
+        <div class="coverage-toggle">
+          <button class="coverage-btn active" data-coverage="Two-High Shell">Two-High</button>
+          <button class="coverage-btn" data-coverage="Cover 3">Cover 3</button>
+          <button class="coverage-btn" data-coverage="Man Coverage">Man</button>
+          <button class="coverage-btn" data-coverage="Cover 1">Cover 1</button>
+        </div>
+
+        <div class="field-container" id="defense-field">
+          <!-- Defensive formation SVG -->
+        </div>
+
+        <div class="coverage-info" id="coverage-info">
+          <h3 id="coverage-name">Two-High Shell (Cover 2/4)</h3>
+          <p id="coverage-desc">Two safeties deep split the field in half. Corners play underneath. Vulnerable to deep middle and seam routes.</p>
+          <div class="coverage-tips">
+            <h4>QB Tips:</h4>
+            <ul id="coverage-tips-list">
+              <li>Look for the seam between safeties</li>
+              <li>Attack the corners with deep outs</li>
+              <li>Use the middle of the field</li>
+            </ul>
+          </div>
+        </div>
+
+        <button class="btn-next" data-next="4">Test Your Knowledge →</button>
+      </div>
+    </section>
+
+    <!-- Section 4: Defense Quiz -->
+    <section id="section-defense-quiz" class="section" data-section="4">
+      <div class="section-content">
+        <h2>Identify the Coverage</h2>
+        <p class="section-intro">Can you read what the defense is showing?</p>
+
+        <div class="field-container" id="defense-quiz-field">
+          <!-- Quiz field -->
+        </div>
+
+        <div class="quiz-container" id="coverage-quiz">
+          <p class="quiz-question">What coverage is this defense running?</p>
+          <div class="quiz-options" id="coverage-quiz-options">
+            <button class="quiz-option" data-answer="Two-High Shell">Two-High Shell</button>
+            <button class="quiz-option" data-answer="Cover 3">Cover 3</button>
+            <button class="quiz-option" data-answer="Man Coverage">Man Coverage</button>
+            <button class="quiz-option" data-answer="Cover 1">Cover 1</button>
+          </div>
+          <div class="quiz-feedback" id="coverage-quiz-feedback"></div>
+        </div>
+
+        <div class="quiz-stats">
+          <span class="stat">Streak: <strong id="coverage-streak">0</strong></span>
+          <span class="stat">Correct: <strong id="coverage-correct">0</strong>/<strong id="coverage-total">0</strong></span>
+        </div>
+
+        <button class="btn-next" data-next="5">Continue to Play Calling →</button>
+      </div>
+    </section>
+
+    <!-- Section 5: Run vs Pass (Full Puzzle Game) -->
+    <section id="section-puzzle" class="section" data-section="5">
+      <div class="section-content">
+        <h2>Run or Pass?</h2>
+        <p class="section-intro">Make the call based on the situation. Think like an NFL quarterback.</p>
+
+        <div class="situation-display" id="situation-display">
+          <div class="situation-header">
+            <span class="situation-down" id="puzzle-down">3rd & 7</span>
+            <span class="situation-field" id="puzzle-field-pos">Opponent 43</span>
+          </div>
+          <div class="situation-details">
+            <span class="detail"><strong>Clock:</strong> <span id="puzzle-clock">5:42</span></span>
+            <span class="detail"><strong>Score:</strong> <span id="puzzle-score">14-10</span></span>
+            <span class="detail"><strong>Formation:</strong> <span id="puzzle-play">Gun Formation</span></span>
+          </div>
+        </div>
+
+        <div class="field-container" id="puzzle-field">
+          <!-- Puzzle field with defense -->
+        </div>
+
+        <div class="quiz-container" id="puzzle-quiz">
+          <div class="quiz-options" id="puzzle-options">
+            <!-- Options rendered by JS -->
+          </div>
+          <div class="quiz-feedback" id="puzzle-feedback"></div>
+        </div>
+
+        <div class="analytics-display" id="analytics-display" style="display: none;">
+          <h4>NFL Analytics</h4>
+          <div class="analytics-bars">
+            <div class="analytics-bar">
+              <span class="bar-label">Pass Rate</span>
+              <div class="bar-container">
+                <div class="bar-fill pass" id="analytics-pass-rate"></div>
+              </div>
+              <span class="bar-value" id="analytics-pass-value">0%</span>
+            </div>
+            <div class="analytics-bar">
+              <span class="bar-label">Run Rate</span>
+              <div class="bar-container">
+                <div class="bar-fill run" id="analytics-run-rate"></div>
+              </div>
+              <span class="bar-value" id="analytics-run-value">0%</span>
+            </div>
+          </div>
+          <p class="analytics-insight" id="analytics-insight"></p>
+        </div>
+
+        <div class="puzzle-stats">
+          <div class="stat-card">
+            <span class="stat-value" id="puzzle-rating">1200</span>
+            <span class="stat-label">Rating</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-value" id="puzzle-streak">0</span>
+            <span class="stat-label">Streak</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-value" id="puzzle-correct">0</span>
+            <span class="stat-label">Correct</span>
+          </div>
+        </div>
+
+        <button class="btn-next" data-next="6">Continue to Routes →</button>
+      </div>
+    </section>
+
+    <!-- Section 6: Routes -->
+    <section id="section-routes" class="section" data-section="6">
+      <div class="section-content">
+        <h2>The Route Tree</h2>
+        <p class="section-intro">Every receiver runs a specific path. Learn the routes to understand where to throw.</p>
+
+        <div class="route-tabs">
+          <button class="route-tab active" data-tab="pass">Pass Routes</button>
+          <button class="route-tab" data-tab="run">Run Plays</button>
+        </div>
+
+        <div class="routes-grid" id="routes-grid">
+          <!-- Route cards rendered by JS -->
+        </div>
+
+        <div class="route-detail" id="route-detail" style="display: none;">
+          <button class="btn-back" id="route-back">← Back to Routes</button>
+          <h3 id="route-detail-name">Slant</h3>
+          <div class="route-diagram-container" id="route-diagram">
+            <!-- Route SVG -->
+          </div>
+          <p id="route-detail-desc">Quick inside break at 45 degrees, beats man coverage.</p>
+          <div class="route-tips">
+            <h4>When to use:</h4>
+            <ul id="route-tips-list">
+              <li>Against man coverage</li>
+              <li>When you need a quick throw</li>
+              <li>Hot route against pressure</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="completion-banner" id="completion-banner" style="display: none;">
+          <h3>🏈 Congratulations!</h3>
+          <p>You've completed X's and O's 101. You now understand the basics of reading defenses and making quarterback decisions.</p>
+          <button class="btn-primary" id="restart-btn">Start Over</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>X's and O's 101 - Learn Football Strategy</p>
+  </footer>
+
+  <script src="js/field.js"></script>
+  <script src="js/routes.js"></script>
+  <script src="js/quiz.js"></script>
+  <script src="js/progress.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
