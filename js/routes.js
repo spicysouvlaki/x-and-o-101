@@ -4,145 +4,97 @@
  */
 
 const Routes = (function() {
-  // Route definitions with descriptions and tips
+  // Simplified route definitions - 6 essential routes with situational framing
   const passRoutes = {
-    'Drag': {
-      name: 'Drag',
-      description: 'Shallow crossing route, ~5 yards across the field. High-percentage throw.',
-      beats: ['<span class="term" data-term="zone">Zone</span> Coverage', 'Cover 2', 'Cover 3'],
-      tips: ['Quick throw against <span class="term" data-term="zone">zone</span>', 'Look for soft spots in <span class="term" data-term="coverage">coverage</span>', 'Great <span class="term" data-term="hot-route">hot route</span> against <span class="term" data-term="blitz">blitz</span>']
-    },
-    'Corner': {
-      name: 'Corner',
-      description: 'Deep outside break toward the corner of the end zone. 15-20 yards.',
-      beats: ['Cover 2', 'Two-High Shell'],
-      tips: ['Attacks the hole between corner and safety', 'Best thrown to the sideline', 'Timing route - throw before the break']
-    },
-    'Seam': {
-      name: 'Seam',
-      description: 'Vertical route up the middle, between hash marks.',
-      beats: ['Cover 3', '<span class="term" data-term="single-high">Single-High</span> Safety'],
-      tips: ['Attack the middle of the field', 'Great for tight ends', '<span class="term" data-term="read">Read</span> the safety - throw if he commits']
-    },
     'Slant': {
       name: 'Slant',
-      description: 'Quick inside break at 45 degrees, 3-5 yards.',
-      beats: ['<span class="term" data-term="man">Man</span> Coverage', 'Press Coverage'],
-      tips: ['Quick throw beats <span class="term" data-term="man">man</span>', '<span class="term" data-term="hot-route">Hot route</span> against pressure', 'Receiver uses inside leverage']
+      situation: 'Defense is in <span class="term" data-term="man">man coverage</span>',
+      description: 'Quick inside break at 45 degrees. The receiver uses inside leverage to create separation from the defender.',
+      reward: 'Fast, high-percentage throw that\'s hard to defend one-on-one',
+      risk: 'Linebacker can read it and jump the route for an interception',
+      tips: ['QB throws within 2 seconds of snap', 'Receiver breaks sharply at 3-5 yards', 'Great <span class="term" data-term="hot-route">hot route</span> against <span class="term" data-term="blitz">blitz</span>']
     },
     'Post': {
       name: 'Post',
-      description: 'Deep route breaking toward the goalpost, 12-15 yards.',
-      beats: ['Cover 1', '<span class="term" data-term="single-high">Single-High</span> Safety'],
-      tips: ['Attack <span class="term" data-term="single-high">single-high</span> safety', 'Big play potential', '<span class="term" data-term="read">Read</span> safety rotation']
-    },
-    'Out': {
-      name: 'Out',
-      description: 'Sharp 90-degree break toward the sideline, 10-12 yards.',
-      beats: ['Zone Coverage', 'Soft Coverage'],
-      tips: ['Timing throw to the sideline', 'Receiver must sell vertical first', 'Watch for underneath defenders']
-    },
-    'Fade': {
-      name: 'Fade',
-      description: 'Straight vertical along the sideline. <span class="term" data-term="red-zone">Red zone</span> specialty.',
-      beats: ['<span class="term" data-term="man">Man</span> Coverage', 'Tight Coverage'],
-      tips: ['Back shoulder throw', 'Perfect for <span class="term" data-term="red-zone">red zone</span>', 'Trust your receiver in one-on-one']
-    },
-    'Flat': {
-      name: 'Flat',
-      description: 'Quick route to the <span class="term" data-term="flat">flat</span> area near the sideline.',
-      beats: ['<span class="term" data-term="blitz">Blitz</span>', '<span class="term" data-term="zone">Zone</span> Coverage'],
-      tips: ['Safety valve against pressure', '<span class="term" data-term="check-down">Check down</span> option', 'Get the ball out quick']
-    },
-    'Screen': {
-      name: 'Screen',
-      description: 'Receiver or RB catches behind the <span class="term" data-term="line-of-scrimmage">line</span> with blockers ahead.',
-      beats: ['Heavy Pass Rush', 'Aggressive Defense'],
-      tips: ['Use against <span class="term" data-term="blitz">blitz</span>-heavy defenses', 'Let blockers set up', 'Patience is key']
-    },
-    'Check Down': {
-      name: 'Check Down',
-      description: 'Short dump-off to RB or nearby receiver. Last resort.',
-      beats: ['Deep <span class="term" data-term="coverage">Coverage</span>', 'Prevent Defense'],
-      tips: ['Take what the defense gives', 'Live to play another <span class="term" data-term="down">down</span>', 'Better than a sack']
-    },
-    'Dig': {
-      name: 'Dig',
-      description: 'In-breaking route at 12-15 yards. Sharp 90-degree cut.',
-      beats: ['Cover 3', 'Zone Coverage'],
-      tips: ['Attacks the middle of zone', 'Sit in the soft spot', 'Great for moving the chains']
+      situation: 'Defense shows <span class="term" data-term="single-high">single-high</span> safety',
+      description: 'Deep route breaking toward the goalpost at 12-15 yards. Attacks the middle of the field.',
+      reward: 'Big play potential - can go for 20+ yards or a touchdown',
+      risk: 'Takes time to develop; QB can get sacked if protection breaks down',
+      tips: ['Safety commits to one side, throw to the other', 'Receiver must beat corner off the line', 'Often paired with play-action']
     },
     'Curl': {
       name: 'Curl',
-      description: 'Stop and turn back toward the QB at 10-12 yards.',
-      beats: ['Zone Coverage', 'Off Coverage'],
-      tips: ['Receiver finds the hole', 'Timing route', 'Good for third and medium']
+      situation: 'Need to move the chains on 3rd down',
+      description: 'Receiver runs 10-12 yards, stops, and turns back toward the QB. Finds the soft spot in <span class="term" data-term="zone">zone coverage</span>.',
+      reward: 'Reliable chain-mover; receiver can adjust to find open space',
+      risk: 'Limited yards after catch; defender can close quickly',
+      tips: ['Receiver "sits" in the hole between defenders', 'QB must anticipate the break', 'Good for 3rd and 6-8 situations']
+    },
+    'Drag': {
+      name: 'Drag',
+      situation: 'Defense is in <span class="term" data-term="zone">zone coverage</span>',
+      description: 'Shallow crossing route at ~5 yards. Receiver runs across the field underneath the <span class="term" data-term="coverage">coverage</span>.',
+      reward: 'High-percentage throw that exploits gaps between zone defenders',
+      risk: 'Short gain; need blockers for yards after catch',
+      tips: ['Watch for soft spots as receiver crosses', 'Often open against Cover 2 or Cover 3', 'Quick throw avoids pressure']
+    },
+    'Fade': {
+      name: 'Fade',
+      situation: 'In the <span class="term" data-term="red-zone">red zone</span> with one-on-one coverage',
+      description: 'Straight vertical along the sideline. QB throws to the back shoulder where only the receiver can get it.',
+      reward: 'Touchdown or nothing - great when you need 6 points',
+      risk: 'Low completion percentage; requires perfect timing and throw',
+      tips: ['Look for size mismatch (tall receiver vs short corner)', 'Back-shoulder throw keeps it away from defender', 'Trust your receiver to make the play']
+    },
+    'Screen': {
+      name: 'Screen',
+      situation: 'Defense is <span class="term" data-term="blitz">blitzing</span> heavily',
+      description: 'RB or receiver catches behind the line with blockers setting up ahead. Uses the defense\'s aggression against them.',
+      reward: 'Can turn a blitz into a big gain with blockers in space',
+      risk: 'If defense reads it, can be a big loss or turnover',
+      tips: ['O-line lets rushers through, then blocks downfield', 'RB must be patient waiting for blocks', 'Works best when defense expects deep pass']
     }
   };
 
+  // Simplified run plays - 4 essential concepts
   const runPlays = {
     'Inside Zone': {
       name: 'Inside Zone',
-      description: 'Zone blocking scheme between the tackles. RB reads blocks and finds cutback.',
-      beats: ['Aggressive LBs', 'Slanting D-Line'],
-      tips: ['RB reads the blocks', 'One cut and go', 'Great for short yardage']
+      situation: 'Standard running down, defense not stacking the box',
+      description: 'Zone blocking where linemen block areas, not specific defenders. RB reads the blocks and finds the best lane.',
+      reward: 'Consistent yards; RB can adjust to what the defense gives',
+      risk: 'Can get stuffed if defense fills the gaps quickly',
+      tips: ['Watch RB\'s eyes - he\'s reading blocks', 'One cut and go north', 'Most common run play in NFL']
     },
-    'Outside Zone': {
-      name: 'Outside Zone',
-      description: 'Stretch play toward the edge with cutback option.',
-      beats: ['Two-High Safety', 'Spread Defense'],
-      tips: ['Get RB in space', 'Use athleticism', 'Cutback if edge is lost']
-    },
-    'Power Run': {
-      name: 'Power Run',
-      description: 'Pulling guard leads through the hole. Downhill running.',
-      beats: ['Light Boxes', 'Single-High Safety'],
-      tips: ['Physical, downhill run', 'Follow the pulling guard', 'Pound the defense']
+    'Power': {
+      name: 'Power',
+      situation: 'Short yardage or goal line - need to move the pile',
+      description: 'A guard pulls across the formation to lead block. Downhill, physical running.',
+      reward: 'Hard to stop when executed well; wears down defense',
+      risk: 'Predictable direction; defense can stack the point of attack',
+      tips: ['Watch for pulling lineman', 'RB follows the lead blocker', 'Classic "ground and pound" football']
     },
     'Counter': {
       name: 'Counter',
-      description: 'Misdirection - backfield action one way, linemen pull the other.',
-      beats: ['Aggressive LBs', 'Over-pursuing Defense'],
-      tips: ['Sell the fake', 'Patience for the cutback', 'Great on short yardage']
+      situation: 'Defense is over-pursuing or playing aggressively',
+      description: 'Misdirection - backfield action goes one way, but linemen pull the other way. Freezes linebackers.',
+      reward: 'Big play potential when defense bites on the fake',
+      risk: 'Takes time to develop; can lose yards if defense reads it',
+      tips: ['Watch for initial fake one direction', 'RB takes handoff going opposite way', 'Sets up well after establishing inside zone']
     },
-    'Draw Play': {
-      name: 'Draw Play',
-      description: 'Fake pass, delayed handoff. Uses pass rush against itself.',
-      beats: ['Pass Rush Heavy', 'Obvious Pass Situation'],
-      tips: ['Set up with pass looks', 'RB waits for lanes', 'Surprise element']
-    },
-    'QB Power': {
-      name: 'QB Power',
-      description: 'QB keeps and runs with lead blockers. Read option or designed.',
-      beats: ['Light Boxes', 'RB-focused Defense'],
-      tips: ['Use mobile QB', 'Read the unblocked defender', 'Take what they give']
+    'Draw': {
+      name: 'Draw',
+      situation: 'Obvious passing down (3rd and long) or heavy pass rush',
+      description: 'Fake pass, then delayed handoff. Uses the defense\'s pass rush aggression against them.',
+      reward: 'Catches defense off guard; can get chunk yards',
+      risk: 'If defense doesn\'t bite, RB has nowhere to go',
+      tips: ['QB drops back like it\'s a pass', 'O-line lets rushers upfield, then blocks', 'Works best on 3rd and 8+']
     }
   };
 
-  // SVG path definitions for each route
+  // SVG path definitions for each route (simplified to 6 pass + 4 run)
   const routePaths = {
-    'Drag': {
-      lines: [
-        { x1: 40, y1: 50, x2: 40, y2: 40 },
-        { x1: 40, y1: 40, x2: 65, y2: 40 }
-      ],
-      arrow: { x: 65, y: 40, direction: 'right' }
-    },
-    'Corner': {
-      lines: [
-        { x1: 40, y1: 50, x2: 40, y2: 25 }
-      ],
-      curves: [
-        { d: 'M 40 25 Q 50 20 60 10' }
-      ],
-      arrow: { x: 60, y: 10, direction: 'up-right' }
-    },
-    'Seam': {
-      lines: [
-        { x1: 40, y1: 50, x2: 40, y2: 10 }
-      ],
-      arrow: { x: 40, y: 10, direction: 'up' }
-    },
+    // Pass Routes
     'Slant': {
       lines: [
         { x1: 40, y1: 50, x2: 40, y2: 43 },
@@ -157,27 +109,27 @@ const Routes = (function() {
       ],
       arrow: { x: 50, y: 10, direction: 'up-right' }
     },
-    'Out': {
+    'Curl': {
       lines: [
-        { x1: 40, y1: 50, x2: 40, y2: 30 },
-        { x1: 40, y1: 30, x2: 70, y2: 30 }
+        { x1: 40, y1: 50, x2: 40, y2: 30 }
       ],
-      arrow: { x: 70, y: 30, direction: 'right' }
+      curves: [
+        { d: 'M 40 30 Q 38 28 35 32' }
+      ],
+      arrow: { x: 35, y: 32, direction: 'down-left' }
+    },
+    'Drag': {
+      lines: [
+        { x1: 40, y1: 50, x2: 40, y2: 40 },
+        { x1: 40, y1: 40, x2: 65, y2: 40 }
+      ],
+      arrow: { x: 65, y: 40, direction: 'right' }
     },
     'Fade': {
       lines: [
         { x1: 15, y1: 50, x2: 10, y2: 10 }
       ],
       arrow: { x: 10, y: 10, direction: 'up' }
-    },
-    'Flat': {
-      lines: [
-        { x1: 40, y1: 50, x2: 40, y2: 48 }
-      ],
-      curves: [
-        { d: 'M 40 48 Q 50 45 65 48' }
-      ],
-      arrow: { x: 65, y: 48, direction: 'right' }
     },
     'Screen': {
       lines: [
@@ -188,29 +140,7 @@ const Routes = (function() {
       ],
       arrow: { x: 25, y: 52, direction: 'left' }
     },
-    'Check Down': {
-      lines: [
-        { x1: 40, y1: 55, x2: 40, y2: 48 },
-        { x1: 40, y1: 48, x2: 30, y2: 48 }
-      ],
-      arrow: { x: 30, y: 48, direction: 'left' }
-    },
-    'Dig': {
-      lines: [
-        { x1: 40, y1: 50, x2: 40, y2: 25 },
-        { x1: 40, y1: 25, x2: 60, y2: 25 }
-      ],
-      arrow: { x: 60, y: 25, direction: 'right' }
-    },
-    'Curl': {
-      lines: [
-        { x1: 40, y1: 50, x2: 40, y2: 30 }
-      ],
-      curves: [
-        { d: 'M 40 30 Q 38 28 35 32' }
-      ],
-      arrow: { x: 35, y: 32, direction: 'down-left' }
-    },
+    // Run Plays
     'Inside Zone': {
       lines: [
         { x1: 40, y1: 55, x2: 40, y2: 52, dashed: true }
@@ -220,16 +150,7 @@ const Routes = (function() {
       ],
       arrow: { x: 45, y: 35, direction: 'up' }
     },
-    'Outside Zone': {
-      lines: [
-        { x1: 40, y1: 55, x2: 55, y2: 55, dashed: true }
-      ],
-      curves: [
-        { d: 'M 55 55 Q 65 50 65 35' }
-      ],
-      arrow: { x: 65, y: 35, direction: 'up' }
-    },
-    'Power Run': {
+    'Power': {
       lines: [
         { x1: 40, y1: 55, x2: 40, y2: 50, dashed: true },
         { x1: 40, y1: 50, x2: 50, y2: 40 }
@@ -245,19 +166,12 @@ const Routes = (function() {
       ],
       arrow: { x: 60, y: 25, direction: 'up-right' }
     },
-    'Draw Play': {
+    'Draw': {
       lines: [
         { x1: 40, y1: 55, x2: 40, y2: 50, dashed: true },
         { x1: 40, y1: 50, x2: 40, y2: 35 }
       ],
       arrow: { x: 40, y: 35, direction: 'up' }
-    },
-    'QB Power': {
-      lines: [
-        { x1: 40, y1: 52, x2: 45, y2: 50, dashed: true },
-        { x1: 45, y1: 50, x2: 55, y2: 40 }
-      ],
-      arrow: { x: 55, y: 40, direction: 'up-right' }
     }
   };
 

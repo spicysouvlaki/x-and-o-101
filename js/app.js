@@ -507,7 +507,7 @@ const App = (function() {
       grid.innerHTML = Object.entries(routes).map(([name, info]) => `
         <div class="route-card" data-route="${name}">
           <div class="route-card-name">${info.name}</div>
-          <div class="route-card-desc">${info.beats[0]}</div>
+          <div class="route-card-situation">${info.situation}</div>
         </div>
       `).join('');
 
@@ -528,6 +528,16 @@ const App = (function() {
       document.getElementById('route-detail-desc').innerHTML = info.description;
       document.getElementById('route-tips-list').innerHTML =
         info.tips.map(tip => `<li>${tip}</li>`).join('');
+
+      // Update situational info
+      const situationText = document.getElementById('route-situation-text');
+      if (situationText) situationText.innerHTML = info.situation;
+
+      // Update trade-offs
+      const rewardText = document.getElementById('route-reward');
+      const riskText = document.getElementById('route-risk');
+      if (rewardText) rewardText.textContent = info.reward;
+      if (riskText) riskText.textContent = info.risk;
 
       // Render route diagram
       Routes.render('route-diagram', routeName);

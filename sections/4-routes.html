@@ -1,7 +1,7 @@
 <section id="section-routes" class="section" data-section="3">
   <div class="section-content">
-    <h2>The Route Tree</h2>
-    <p class="section-intro">Every receiver runs a specific path. Learn the routes to understand where to throw.</p>
+    <h2>Reading Routes</h2>
+    <p class="section-intro">The QB picks a route based on what the defense shows. Here are the 6 routes you'll see most often.</p>
 
     <div class="route-tabs">
       <button class="route-tab active" data-tab="pass">Pass Routes</button>
@@ -14,18 +14,37 @@
 
     <div class="route-detail" id="route-detail" style="display: none;">
       <button class="btn-back" id="route-back">← Back to Routes</button>
-      <h3 id="route-detail-name">Slant</h3>
-      <!-- Hidden until SVGs are more exaggerated -->
-      <div class="route-diagram-container" id="route-diagram" style="display: none;">
-        <!-- Route SVG -->
+
+      <div class="route-detail-header">
+        <h3 id="route-detail-name">Slant</h3>
+        <div class="route-situation" id="route-situation">
+          <span class="situation-label">When to use:</span>
+          <span class="situation-text" id="route-situation-text">Defense is in man coverage</span>
+        </div>
       </div>
-      <p id="route-detail-desc">Quick inside break at 45 degrees, beats <span class="term" data-term="man">man coverage</span>.</p>
+
+      <div class="route-diagram-container" id="route-diagram">
+        <!-- Route SVG rendered by JS -->
+      </div>
+
+      <p class="route-description" id="route-detail-desc">Quick inside break at 45 degrees, beats man coverage.</p>
+
+      <div class="route-tradeoff" id="route-tradeoff">
+        <div class="tradeoff-item tradeoff-reward">
+          <span class="tradeoff-label">✓ Reward</span>
+          <span class="tradeoff-text" id="route-reward">Quick completion, hard to defend</span>
+        </div>
+        <div class="tradeoff-item tradeoff-risk">
+          <span class="tradeoff-label">✗ Risk</span>
+          <span class="tradeoff-text" id="route-risk">Linebacker can jump it for interception</span>
+        </div>
+      </div>
+
       <div class="route-tips">
-        <h4>When to use:</h4>
+        <h4>Watch for:</h4>
         <ul id="route-tips-list">
-          <li>Against <span class="term" data-term="man">man coverage</span></li>
-          <li>When you need a quick throw</li>
-          <li><span class="term" data-term="hot-route">Hot route</span> against pressure</li>
+          <li>QB throwing quickly after the snap</li>
+          <li>Receiver breaking sharply inside</li>
         </ul>
       </div>
     </div>

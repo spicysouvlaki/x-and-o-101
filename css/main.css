@@ -786,30 +786,118 @@ h4 {
   margin-bottom: 0.25rem;
 }
 
-.route-card-desc {
+.route-card-desc,
+.route-card-situation {
   font-size: 0.75rem;
   color: var(--text-muted);
+}
+
+.route-card-situation {
+  font-style: italic;
 }
 
 /* Route Detail */
 .route-detail {
   background: var(--bg-secondary);
-  padding: 1rem;
+  padding: 1.5rem;
+  border-radius: 12px;
+}
+
+.route-detail-header {
+  margin-bottom: 1rem;
+}
+
+.route-detail-header h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.route-situation {
+  background: var(--bg-tertiary);
+  padding: 0.75rem 1rem;
   border-radius: 8px;
+  border-left: 3px solid var(--accent-blue);
+}
+
+.situation-label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.situation-text {
+  display: block;
+  margin-top: 0.25rem;
+  color: var(--text-primary);
+  font-weight: 500;
 }
 
 .route-diagram-container {
   width: 100%;
   max-width: 300px;
-  margin: 1rem auto;
+  margin: 1.5rem auto;
   aspect-ratio: 4/3;
   background: var(--field-green);
   border-radius: 8px;
   overflow: hidden;
 }
 
+.route-description {
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+/* Trade-off display */
+.route-tradeoff {
+  display: grid;
+  gap: 0.75rem;
+  margin: 1rem 0;
+}
+
+.tradeoff-item {
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  background: var(--bg-tertiary);
+}
+
+.tradeoff-reward {
+  border-left: 3px solid var(--accent-green);
+}
+
+.tradeoff-risk {
+  border-left: 3px solid var(--accent-red);
+}
+
+.tradeoff-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.tradeoff-reward .tradeoff-label {
+  color: var(--accent-green);
+}
+
+.tradeoff-risk .tradeoff-label {
+  color: var(--accent-red);
+}
+
+.tradeoff-text {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
 .route-tips {
   margin-top: 1rem;
+}
+
+.route-tips h4 {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
 }
 
 .route-tips ul {
